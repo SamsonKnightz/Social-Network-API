@@ -75,7 +75,7 @@ const getRandomName = () =>
   `${getRandomArrItem(names)} ${getRandomArrItem(names)}`;
 
 // Create the responses that will be added to each video
-const getRandomReaction = (int) => 
+const getRandomReaction = () => 
   `${getRandomArrItem(possibleReaction)}`;
 
 // Export the functions for use in seed.js

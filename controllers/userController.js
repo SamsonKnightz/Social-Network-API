@@ -7,21 +7,6 @@ const headCount = async () =>
     .count('userCount')
     .then((numberOfUsers) => numberOfUsers);
 
-// Aggregate function for getting the overall grade using $avg
-const grade = async (userId) =>
-  Users.aggregate([
-    // only include the given student by using $match
-    { $match: { _id: ObjectId(userId) } },
-    {
-      $unwind: '$assignments',
-    },
-    {
-      $group: {
-        _id: ObjectId(userId),
-        overallGrade: { $avg: '$assignments.score' },
-      },
-    },
-  ]);
 
 module.exports = {
   // Get all students
@@ -30,7 +15,6 @@ module.exports = {
       .then(async (users) => {
         const userObj = {
           users,
-          headCount: await headCount(),
         };
         return res.json(userObj);
       })
@@ -67,7 +51,7 @@ module.exports = {
       .then((user) =>
         !user
           ? res.status(404).json({ message: 'No such user exists' })
-          : Course.findOneAndUpdate(
+          : Thought.findOneAndUpdate(
               { users: req.params.userId },
               { $pull: { users: req.params.userId } },
               { new: true }

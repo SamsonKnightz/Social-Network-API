@@ -12,7 +12,7 @@ const {
 router.route('/').get(getUser).post(createUser);
 
 // /api/students/:studentId
-router.route('/:studentId').get(getSingleUser).delete(deleteUser);
+router.route('/:userId').get(getSingleUser).delete(deleteUser);
 
 // /api/users/:userId/reactions
 router.route('/:userId/reactions').post(addReaction);
