@@ -6,8 +6,6 @@ connection.on('error', (err) => err);
 
 connection.once('open', async () => {
   console.log('connected');
-  await Video.deleteMany({});
-  await User.deleteMany({});
 
   const users = [];
   const videos = getRandomVideos(10);
@@ -24,8 +22,6 @@ connection.once('open', async () => {
     });
   }
 
-  await User.collection.insertMany(users);
-  await Video.collection.insertMany(videos);
 
   // loop through the saved videos, for each video we need to generate a video response and insert the video responses
   console.table(users);

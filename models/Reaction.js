@@ -1,7 +1,7 @@
-const mongoose  = require('mongoose');
+const { Schema, Types }  = require('mongoose');
 
 // Schema to create a course model
-const reactionSchema = new mongoose.Schema(
+const reactionSchema = new Schema(
   {
     reactionId: {
       type: Number,
