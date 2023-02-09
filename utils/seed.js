@@ -8,10 +8,10 @@ connection.once('open', async () => {
   console.log('connected');
 
   const users = [];
-  const possibleReaction = getRandomReaction(10);
-
-  for (let i = 0; i < 20; i++) {
+  
+  for (let i = 0; i < 10; i++) {
     const fullName = getRandomName();
+    const possibleReaction = getRandomReaction(10);
     const first = fullName.split(' ')[0];
     const last = fullName.split(' ')[1];
 
@@ -26,7 +26,6 @@ connection.once('open', async () => {
 
   // loop through the saved videos, for each video we need to generate a video response and insert the video responses
   console.table(users);
-  console.table(possibleReaction);
   console.info('Seeding complete! 🌱');
   process.exit(0);
 });

@@ -55,20 +55,6 @@ const names = [
   ``,
 ];
 
-const descriptionsBodies = [
-  'How to disagree with someone',
-  'iPhone review',
-  'how-to video',
-  'video essay on the history of video games',
-  'How to make money on the App Store',
-  'Learn NextJS in five minutes (Not clickbate)',
-  'Movie trailer',
-  'Hello world',
-  'Another possible solution to the algorithm',
-  'Apology video',
-  'Submission for startup pitch',
-];
-
 const possibleReaction = [
   'Positive',
   'Shocked',
@@ -79,25 +65,18 @@ const possibleReaction = [
   'Happy',
 ];
 
-const users = [];
 
 // Get a random item given an array
-const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
+const getRandomArrItem = (arr) => 
+  arr[Math.floor(Math.random() * arr.length)];
 
 // Gets a random full name
 const getRandomName = () =>
   `${getRandomArrItem(names)} ${getRandomArrItem(names)}`;
 
 // Create the responses that will be added to each video
-const getRandomReaction = (int) => {
-  const results = [];
-  for (let i = 0; i < int; i++) {
-    results.push({
-      possibleReaction: getRandomArrItem(possibleReaction),
-    });
-  }
-  return results;
-};
+const getRandomReaction = (int) => 
+  `${getRandomArrItem(possibleReaction)}`;
 
 // Export the functions for use in seed.js
 module.exports = { getRandomName, getRandomReaction};
