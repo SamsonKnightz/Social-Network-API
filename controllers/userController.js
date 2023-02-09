@@ -1,4 +1,3 @@
-const { ObjectId } = require('mongoose').Types;
 const { Users, Thought } = require('../models');
 
 module.exports = {
@@ -30,7 +29,8 @@ module.exports = {
   updateUser(req, res) {
     Users.findOneAndUpdate(
       { _id: req.params.userId},
-      { new: true }
+      { new: true },
+      { $set: req.body }
     )
       .then((user) =>
       !user
