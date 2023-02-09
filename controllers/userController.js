@@ -1,13 +1,6 @@
 const { ObjectId } = require('mongoose').Types;
 const { Users, Thought } = require('../models');
 
-// Aggregate function to get the number of students overall
-const headCount = async () =>
-  Users.aggregate()
-    .count('userCount')
-    .then((numberOfUsers) => numberOfUsers);
-
-
 module.exports = {
   
   // Get all students
@@ -35,8 +28,20 @@ module.exports = {
   },
 
   updateUser(req, res) {
-    
-  },
+    Users.findOneAndUpdate(
+      { _id: req.params.userId},
+      { new: true }
+    )
+      .then((user) =>
+      !user
+        ? res.status(404).json({ message: 'No user with this id!' })
+        : res.json(user)
+    )
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+},
 
   // Delete a student and remove them from the course
   deleteUser(req, res) {
@@ -50,13 +55,7 @@ module.exports = {
               { new: true }
             )
       )
-      .then((thought) =>
-        !thought
-          ? res.status(404).json({
-              message: 'User deleted, but no thoughts found',
-            })
-          : res.json({ message: 'User successfully deleted' })
-      )
+
       .catch((err) => {
         console.log(err);
         res.status(500).json(err);

@@ -16,10 +16,7 @@ const thoughtSchema = new Schema(
     username: {
       type: String,
       required: true,
-    },
-    reactions: {
-      reactions: [reactionSchema],
-    }
+  },
   },
   {
     toJSON: {
