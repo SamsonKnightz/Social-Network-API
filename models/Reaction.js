@@ -7,13 +7,18 @@ const reactionSchema = new mongoose.Schema(
       type: Number,
       default: () => new Types.ObjectId(),
     },
-    username: {
+    reactionBody: {
       type: String,
-      default: true,
+      required: true,
+      maxlength: 280
     },
+      username: {
+        type: String,
+        required: true,
+      },
     createdAt: {
       type: Date,
-      default: Date.now(),
+      default: Date.now,
     },
   },
   {
