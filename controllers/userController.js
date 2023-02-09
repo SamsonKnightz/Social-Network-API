@@ -9,35 +9,23 @@ const headCount = async () =>
 
 
 module.exports = {
+  
   // Get all students
-  getUser(req, res) {
+  getUsers(req, res) {
     Users.find()
-      .then(async (users) => {
-        const userObj = {
-          users,
-        };
-        return res.json(userObj);
-      })
-      .catch((err) => {
-        console.log(err);
-        return res.status(500).json(err);
-      });
+      .then((users) => res.json(users))
+      .catch((err) => res.status(500).json(err));
   },
   // Get a single student
   getSingleUser(req, res) {
-    Users.findOne({ _id: req.params.usersId })
+    Users.findOne({ _id: req.params.userId })
       .select('-__v')
-      .then(async (user) =>
+      .then((user) =>
         !user
           ? res.status(404).json({ message: 'No user with that ID' })
-          : res.json({
-              user,
-            })
+          : res.json(user)
       )
-      .catch((err) => {
-        console.log(err);
-        return res.status(500).json(err);
-      });
+      .catch((err) => res.status(500).json(err));
   },
   // create a new student
   createUser(req, res) {
@@ -45,6 +33,11 @@ module.exports = {
       .then((user) => res.json(user))
       .catch((err) => res.status(500).json(err));
   },
+
+  updateUser(req, res) {
+    
+  },
+
   // Delete a student and remove them from the course
   deleteUser(req, res) {
     Users.findOneAndRemove({ _id: req.params.userId })
