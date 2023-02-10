@@ -4,7 +4,6 @@ module.exports = {
   // Get all courses
   getThoughts(req, res) {
     Thought.find()
-    .select('__v')
       .then((thought) => res.json(thought))
       .catch((err) => res.status(500).json(err));
   },
@@ -35,7 +34,7 @@ module.exports = {
           ? res.status(404).json({ message: 'No thought with that ID' })
           : Users.deleteMany({ _id: { $in: thought.Users } })
       )
-      .then(() => res.json({ message: 'Thought and students deleted!' }))
+      .then(() => res.json({ message: 'Thought and user deleted!' }))
       .catch((err) => res.status(500).json(err));
   },
   // Update a course

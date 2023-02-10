@@ -1,5 +1,4 @@
 const { Users, Thought } = require('../models');
-const User = require('../models/Users');
 
 module.exports = {
 
@@ -49,7 +48,7 @@ module.exports = {
 
   // Delete a student and remove them from the course
   deleteUser(req, res) {
-    Users.findOneAndDelete({ _id: req.params.userId })
+    Thought.findOneAndDelete({ _id: req.params.userId })
       .then((user) =>
         !user
           ? res.status(404).json({ message: 'No such user exists' })
@@ -65,9 +64,9 @@ module.exports = {
   addReaction(req, res) {
     console.log('You are adding an reaction');
     console.log(req.body);
-    Users.findOneAndUpdate(
+    Thought.findOneAndUpdate(
       { _id: req.params.userId },
-      { $addToSet: { assignments: req.body } },
+      { $addToSet: { reactions: req.body } },
       { runValidators: true, new: true }
     )
       .then((user) =>
