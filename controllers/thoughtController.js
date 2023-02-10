@@ -1,13 +1,13 @@
 const { Users, Thought } = require('../models');
 
 module.exports = {
-  // Get all courses
+  // Get all Thoughts
   getThoughts(req, res) {
     Thought.find()
       .then((thought) => res.json(thought))
       .catch((err) => res.status(500).json(err));
   },
-  // Get a course
+  // Get a Thought
   getSingleThought(req, res) {
     Thought.findOne({ _id: req.params.thoughtId })
       .then((thought) =>
@@ -17,7 +17,7 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  // Create a course
+  // Create a Thought
   createThought(req, res) {
     Thought.create(req.body)
       .then((thought) => res.json(thought))
@@ -26,7 +26,7 @@ module.exports = {
         return res.status(500).json(err);
       });
   },
-  // Delete a course
+  // Delete a Thought
   deleteThought(req, res) {
     Thought.findOneAndDelete({ _id: req.params.thoughtId })
       .then((thought) =>
@@ -37,7 +37,7 @@ module.exports = {
       .then(() => res.json({ message: 'Thought and user deleted!' }))
       .catch((err) => res.status(500).json(err));
   },
-  // Update a course
+  // Update a thought
   updateThought(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },

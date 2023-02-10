@@ -15,18 +15,18 @@ router.route('/')
   .post(createUser);
 
 // /api/students/:studentId
-router.route('/:userId').
-  get(getSingleUser).
-  delete(deleteUser).
-  put(updateUser);
+router.route('/:userId')
+  .get(getSingleUser)
+  .delete(deleteUser)
+  .put(updateUser);
 
 // /api/users/:userId/reactions
-router.route('/:userId/reactions').
-  post(addReaction);
+router.route('/:userId/reactions')
+  .post(addReaction);
 
 // /api/users/:userId/reactions/:reactionId
-router.route('/:userId/reactions/:reactionId').
-  delete(removeReaction);
+router.route('/:userId/reactions/:reactionId')
+  .delete(removeReaction);
 
 
 module.exports = router;

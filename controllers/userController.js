@@ -62,19 +62,17 @@ module.exports = {
 
   // Add an assignment to a student
   addReaction(req, res) {
-    console.log('You are adding an reaction');
-    console.log(req.body);
     Thought.findOneAndUpdate(
       { _id: req.params.userId },
       { $addToSet: { reactions: req.body } },
       { runValidators: true, new: true }
     )
-      .then((user) =>
-        !user
+      .then((thought) =>
+        !thought
           ? res
             .status(404)
             .json({ message: 'No user found with that ID :(' })
-          : res.json(user)
+          : res.json(thought)
       )
       .catch((err) => res.status(500).json(err));
   },
@@ -85,12 +83,12 @@ module.exports = {
       { $pull: { reaction: { reactionId: req.params.reactionId } } },
       { runValidators: true, new: true }
     )
-      .then((user) =>
-        !user
+      .then((thought) =>
+        !thought
           ? res
             .status(404)
             .json({ message: 'No user found with that ID :(' })
-          : res.json(user)
+          : res.json(thought)
       )
       .catch((err) => res.status(500).json(err));
   },
