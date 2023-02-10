@@ -4,6 +4,7 @@ module.exports = {
   // Get all courses
   getThoughts(req, res) {
     Thought.find()
+    .select('__v')
       .then((thought) => res.json(thought))
       .catch((err) => res.status(500).json(err));
   },
